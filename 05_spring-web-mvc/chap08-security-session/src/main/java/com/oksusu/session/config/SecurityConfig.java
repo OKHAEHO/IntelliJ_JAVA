@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -39,7 +38,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 auth -> {
                     // 인가처리를 어떻게 시작하겠다? 해당 인가를 어떻게 처리할지 대상을 정리해둔 곳 .permitAll 모든 사람들이 쓸 수 있따.
-                    auth.requestMatchers("/auth/login", "/signup", "auth/fail", "/").permitAll();
+                    auth.requestMatchers("/auth/login", "/user/signup", "auth/fail", "/").permitAll();
                     // .hasAnyAuthority 권한을 가진 사용자들만 가질 수 있따.
                     auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getValue()); //enum으로 가져오기
                     auth.requestMatchers("/user/*").hasAnyAuthority(UserRole.USER.getValue());
@@ -70,28 +69,5 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
