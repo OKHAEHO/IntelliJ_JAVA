@@ -1,0 +1,16 @@
+```bash
+
+### 1. JPQL: 특정 가격 미만 + 가격 오름차순 조회
+# @GetMapping("/price-below-sorted")
+GET http://localhost:8080/products-query/price-below-sorted?maxPrice=10000
+Accept: application/json
+
+### 2. JPQL + DTO: 특정 가격 이상 상품 DTO 조회
+# @GetMapping("/dto/price-above")
+GET http://localhost:8080/products-query/dto/price-above?minPrice=5000
+Accept: application/json
+
+### 3. Native Query: 이름, 가격 조회 (Object[] 반환)
+# @GetMapping("/native/name-price")
+GET http://localhost:8080/products-query/native/name-price?minPrice=3000
+Accept: application/json
